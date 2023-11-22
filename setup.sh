@@ -1,6 +1,7 @@
 #!/bin/bash
 
-[ -f .env ] && source .env && [ ! -z $ID ] && echo "already configured" && exit 1
+touch .env
+source .env && [ ! -z $ID ] && echo "already configured" && exit 1
 
 touch config.json
 docker-compose build
