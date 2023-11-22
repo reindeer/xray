@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  xray:
+    env_file:
+      - .env
+    build:
+      context: build
+      args:
+        RELEASE: ${RELEASE:-1.8.4}
+    volumes:
+      - ./config.json:/xray/config.json
+    ports:
+      - "443:443"
