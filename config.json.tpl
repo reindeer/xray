@@ -2,8 +2,19 @@
     "log": {
         "loglevel": "info"
     },
+    "dns": {
+        "servers": [
+            "dns"
+        ]
+    },
     "routing": {
-        "rules": [],
+        "rules": [
+            {
+                "type": "field",
+                "port": 53,
+                "outboundTag": "dns-out"
+            }
+        ],
         "domainStrategy": "AsIs"
     },
     "inbounds": [
@@ -58,6 +69,10 @@
         {
             "protocol": "blackhole",
             "tag": "block"
+        },
+        {
+            "protocol": "dns",
+            "tag": "dns-out"
         }
     ]
 }

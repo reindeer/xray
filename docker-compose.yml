@@ -6,9 +6,17 @@ services:
       - .env
     build:
       context: build
+      dockerfile: xray
       args:
         RELEASE: ${RELEASE:-1.8.4}
     volumes:
       - ./config.json:/xray/config.json
     ports:
       - "443:443"
+
+  dns:
+    build:
+      context: build
+      dockerfile: dns
+    volumes:
+      - ./dnsmask.conf:/etc/dnsmask.conf
