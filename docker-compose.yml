@@ -19,4 +19,4 @@ services:
       context: build
       dockerfile: dns
     volumes:
-      - ./dnsmask.conf:/etc/dnsmask.conf
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
