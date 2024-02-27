@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 function setup() {
   source .env && [ ! -z $ID ] && echo "already configured" && return
