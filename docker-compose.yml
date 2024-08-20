@@ -20,3 +20,4 @@ services:
       dockerfile: dns
     volumes:
       - ./dnsmasq.conf:/etc/dnsmasq.conf
+      - ./adblock/:/etc/dnsmasq.d/
