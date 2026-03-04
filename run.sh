@@ -14,8 +14,23 @@ function setup() {
   cat .env
 }
 
+function init() {
+  if [[ $(sysctl -n net.core.default_qdisc) != "fq" ]]; then
+      sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
+      echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+  fi
+
+  if [[ $(sysctl -n net.ipv4.tcp_congestion_control) != "bbr" ]]; then
+      sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+      echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+  fi
+  
+  sysctl -p
+}
+
 touch .env
 touch config.json
 docker-compose build
 (setup)
+(init)
 docker-compose up -d

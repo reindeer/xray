@@ -5,7 +5,8 @@
     "dns": {
         "servers": [
             "dns"
-        ]
+        ],
+        "queryStrategy": "UseIPv4"
     },
     "routing": {
         "rules": [
@@ -15,13 +16,12 @@
                 "outboundTag": "dns-out"
             }
         ],
-        "domainStrategy": "AsIs"
+        "domainStrategy": "IPIfNonMatch"
     },
     "inbounds": [
         {
             "port": 443,
             "protocol": "vless",
-            "tag": "vless_tls",
             "settings": {
                 "clients": [
                     {
@@ -43,21 +43,29 @@
                         "www.microsoft.com"
                     ],
                     "privateKey": "$PRIVATE_KEY",
-                    "minClientVer": "",
-                    "maxClientVer": "",
-                    "maxTimeDiff": 0,
                     "shortIds": [
-                        "$SHORTID"
+                        "$SHORTID",
+                        ""
                     ]
                 }
+            },
+            "tcpSettings": {
+                "header": {
+                    "type": "none"
+                }
+            },
+            "sockopt": {
+                "tcpFastOpen": true,
+                "tcpKeepAliveInterval": 7200
             },
             "sniffing": {
                 "enabled": true,
                 "destOverride": [
                     "http",
-                    "tls",
-                    "quic"
-                ]
+                    "tls"
+                ],
+                "metadataOnly": false,
+                "routeOnly": true
             }
         }
     ],

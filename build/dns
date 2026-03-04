@@ -1,4 +1,4 @@
-FROM            golang:1.21-alpine
+FROM            alpine:latest
 RUN             apk update; \
                 apk add --no-cache dnsmasq;
 RUN             mkdir -p /etc/default; \
