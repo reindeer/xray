@@ -6,7 +6,7 @@ services:
       context: build
       dockerfile: xray
       args:
-        RELEASE: ${RELEASE:-1.8.4}
+        RELEASE: ${RELEASE:-26.2.6}
     volumes:
       - ./config.json:/xray/config.json
     ports:
