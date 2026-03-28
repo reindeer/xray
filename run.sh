@@ -7,6 +7,9 @@ function setup() {
   docker compose run --rm xray xray uuid | while read uuid; do echo "ID=$uuid" | tr -d '\r' >>.env; done
   docker compose run --rm xray xray x25519 | while read line; do echo ${line/ /_} | tr -d '\r' | awk -F': ' '{print toupper($1)"="$2}'; done >> .env
   echo SHORTID=$(openssl rand -hex 8) | tr -d '\r' >> .env
+  [ ! -z $DOMAIN ] || echo DOMAIN=www.amazon.com >> .env
+  [ ! -z $XHTTP_PATH ] || echo XHTTP_PATH=/download >> .env
+  [ ! -z $XHTTP_MODE ] || echo XHTTP_MODE=auto >> .env
 
   config
 

@@ -36,27 +36,26 @@
                 "security": "reality",
                 "realitySettings": {
                     "show": false,
-                    "dest": "www.microsoft.com:443",
+                    "dest": "$DOMAIN:443",
                     "xver": 0,
                     "serverNames": [
-                        "microsoft.com",
-                        "www.microsoft.com"
+                        "$DOMAIN"
                     ],
                     "privateKey": "$PRIVATE_KEY",
                     "shortIds": [
                         "$SHORTID",
                         ""
                     ]
-                }
-            },
-            "tcpSettings": {
-                "header": {
-                    "type": "none"
-                }
-            },
-            "sockopt": {
-                "tcpFastOpen": true,
-                "tcpKeepAliveInterval": 7200
+                },
+                "xhttpSettings": {
+                    "host": "$DOMAIN",
+                    "path": "$XHTTP_PATH",
+                    "mode": "$XHTTP_MODE"
+                },
+                "sockopt": {
+                    "tcpFastOpen": true,
+                    "tcpKeepAliveInterval": 7200
+                },
             },
             "sniffing": {
                 "enabled": true,
